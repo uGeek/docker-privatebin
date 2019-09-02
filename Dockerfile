@@ -11,4 +11,5 @@ RUN curl -L https://github.com/PrivateBin/PrivateBin/archive/master.zip > /var/w
     mv html/.htaccess.disabled html/.htaccess && \
     a2enmod rewrite && \
     rm -rf master.zip 
+RUN chmod 777 -R /var/www/html/
 
