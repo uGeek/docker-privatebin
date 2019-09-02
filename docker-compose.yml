@@ -1,0 +1,16 @@
+version: '2'
+services:
+  privatebin:
+    image: koehn/privatebin
+    mem_limit: 128M
+    tmpfs:
+    - /tmp
+    - /run
+    read_only: true
+    restart: always
+    volumes:
+    - ./data:/var/www/html/data
+    - ./conf.php:/var/www/html/cfg/conf.php:ro
+    ports:
+    - '33085:80'
+

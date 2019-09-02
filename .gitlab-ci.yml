@@ -1,0 +1,21 @@
+image: docker
+
+variables:
+  DOCKER_HOST: tcp://localhost:2375
+
+services:
+  - docker:dind
+
+before_script:
+  - docker info
+  - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+
+build_image:
+  variables:
+    IMAGE_NAME: "koehn/privatebin:latest"
+  script:
+    - docker build -t $IMAGE_NAME $BUILD_OPTIONS .
+    - docker push $IMAGE_NAME
+
+after_script:
+  - docker logout
